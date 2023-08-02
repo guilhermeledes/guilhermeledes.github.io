@@ -1,0 +1,346 @@
+:root {
+    --primary-color: #f8ba00;
+    --dark: #1e1e1e;
+    --light: #ffffff;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    color: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: justify;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.75rem;
+}
+
+body * {
+    transition: all 500ms ease-in-out;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+section {
+    min-height: 100vh;
+    min-height: 100svh;
+    width: 70rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    height: 8rem;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background-color: var(--light);
+    box-shadow: 0 0 3rem 3rem var(--light);
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+footer {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    background-color: var(--light);
+    box-shadow: 0 0 4rem 4rem var(--light);
+    position: sticky;
+    bottom: 0;
+    z-index: 1;
+}
+
+nav ul {
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 70rem;
+    height: 7rem;
+    flex-shrink: 0;
+    color: #000;
+    font-family: Outfit;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 700
+}
+
+nav ul li {
+    border-bottom: var(--light) solid 0.25rem;
+}
+
+nav ul li:hover {
+    border-bottom: var(--primary-color) solid 0.25rem;
+}
+
+#intro {
+    height: 100vh;
+    height: 100svh;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#intro * {
+    margin: 0;
+}
+
+#intro a {
+    display: flex;
+    padding: 0 1.25rem;
+    flex-direction: column;
+    border-radius: 2.6875rem;
+    background: var(--primary-color);
+    color: var(--light);
+    margin-top: 3.75rem;
+    font-size: 20px;
+}
+
+#intro>div {
+    display: flex;
+    width: 30.75rem;
+    height: 19.125rem;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 0;
+    font-size: 1.4375rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 2.5rem;
+}
+
+#intro h1 {
+    display: flex;
+    font-family: Outfit;
+    font-size: 3.5rem;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 3.75rem;
+    letter-spacing: 0.03125rem;
+    margin-bottom: 1.5rem;
+}
+
+#intro img {
+    width: 37.5rem;
+    height: 37.5rem;
+    flex-shrink: 0;
+}
+
+#more-about-me,
+#my-skills,
+#my-skills>div {
+    display: flex;
+    flex-direction: column;
+}
+
+#my-skills div {
+    display: flex;
+}
+
+#my-skills>div div {
+    justify-content: space-between;
+    padding-top: 3rem;
+}
+
+.six-skills {
+    width: calc(70rem - 29.688rem);
+}
+
+.three-skills {
+    width: calc(70rem - 52.188rem);
+}
+
+#my-experiences {
+    padding-top: 10rem;
+}
+
+#my-experiences>div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+#my-experiences h2,
+#my-experiences h3,
+#my-experiences h4 {
+    margin: 0;
+}
+
+#my-experiences h2 {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+#my-experiences h3 {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+#my-experiences h4 {
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 14px;
+}
+
+#my-experiences p {
+    font-size: 18px;
+}
+
+#my-experiences div {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-experiences {
+    right: 3px;
+    position: relative;
+}
+
+.right-experiences>div:first-of-type {
+    margin-bottom: 8rem;
+}
+
+.right-experiences>div {
+    border-left: 3px solid var(--dark);
+}
+
+.left-experiences>div {
+    border-right: 3px solid var(--dark);
+    align-items: end;
+}
+
+.experience {
+    padding-top: 3rem;
+}
+
+.experience p {
+    margin: 1rem 0 0 0;
+}
+
+.experience:before {
+    content: "•";
+    font-size: 4rem;
+    margin: 0px -28px;
+    position: absolute;
+}
+
+.left-experiences .experience {
+    padding-right: 16px;
+}
+
+.right-experiences .experience {
+    padding-left: 16px;
+}
+
+.left-experiences,
+.right-experiences {
+    width: 50%;
+}
+
+.experience ul {
+    margin: 0;
+    font-size: 18px;
+}
+
+#testimonials {
+    align-items: center;
+    gap: 2rem;
+}
+
+.testimonial {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 20rem;
+    min-height: 20rem;
+    padding: 0.5rem 2rem;
+    border-radius: 1.25rem;
+    background: var(--light);
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25)
+}
+
+.testimonial:hover {
+    transform-origin: top;
+    transform: translateY(-10px);
+}
+
+.testimonial .wrapper {
+    display: grid;
+    grid-template-rows: 0fr
+}
+
+.testimonial .inner {
+    overflow: hidden;
+}
+
+.testimonial:hover .wrapper {
+    grid-template-rows: 1fr;
+}
+
+.testimonial img {
+    width: 4.375rem;
+    height: 4.375rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.testimonial p {
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.5rem;
+    margin: 0;
+    flex-grow: 1;
+    hyphens: auto;
+    padding: 0 3px;
+}
+
+.testimonial h3 {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.5rem;
+    margin: 0;
+}
+
+.testimonial h2 {
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5rem;
+    margin: 0;
+}
+
+#contact-me {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding: 5rem 0;
+    gap: 3rem;
+}
+
+#contact-me a {
+    margin-left: 20rem;
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+}
+
+#contact-me i {
+    font-size: 3rem;
+    width: 48px;
+    text-align: center;
+}

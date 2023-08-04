@@ -5,8 +5,25 @@
     --width-l: 70rem;
 }
 
+html {
+    overflow: hidden;
+    height: 100vh;
+    height: 100svh;
+}
+
 body {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
     margin: 0;
+    width: 100vw;
+    width: 100svw;
+    height: 100%;
     font-family: Roboto, sans-serif;
     color: var(--dark);
     text-align: justify;
@@ -14,28 +31,10 @@ body {
     font-style: normal;
     font-weight: 400;
     line-height: 1.75rem;
-    overflow: hidden;
-    width: 100vw;
-    width: 100svw;
-    height: 100vh;
-    height: 100svh;
 }
 
 body * {
     transition: all 0.5s ease-in-out;
-}
-
-#container {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
 }
 
 a {

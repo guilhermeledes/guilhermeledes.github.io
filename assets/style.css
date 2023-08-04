@@ -50,7 +50,6 @@ section {
     display: flex;
     justify-content: center;
     scroll-snap-align: start;
-    scroll-snap-stop: always;
     scroll-margin-top: 8rem;
 }
 
@@ -334,15 +333,23 @@ nav ul li:hover {
     body {
         font-size: 20px;
     }
+    #container {
+        gap: 3rem;
+    }
     section {
         width: 90svw;
         min-height: 100svh;
         flex-direction: column;
-        scroll-margin-top: 1rem;
+        scroll-margin-top: 0;
     }
     nav,
     footer {
         box-shadow: 0 0 1rem 1rem var(--light);
+    }
+    #more-about-me,
+    #my-skills,
+    #my-skills>div {
+        justify-content: flex-start;
     }
     #intro {
         justify-content: center;
@@ -350,6 +357,7 @@ nav ul li:hover {
     }
     #intro h1 {
         font-size: 32px;
+        padding-top: unset;
     }
     #intro>div {
         width: 100%;
@@ -360,14 +368,19 @@ nav ul li:hover {
         height: auto;
     }
     nav {
-        height: 1rem;
+        height: 0;
     }
     nav ul {
         display: none;
     }
+    #more-about-me p {
+        margin-top: 0;
+    }
+    #my-skills ul {
+        margin-top: 0;
+    }
     #my-skills div {
         flex-wrap: wrap;
-        gap: 2rem;
     }
     #my-skills>div div {
         padding-top: 0;

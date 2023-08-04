@@ -2,25 +2,40 @@
     --primary-color: #f8ba00;
     --dark: #1e1e1e;
     --light: #ffffff;
+    --width-l: 70rem;
 }
 
 body {
     margin: 0;
     font-family: Roboto, sans-serif;
     color: var(--dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
     text-align: justify;
-    font-size: 1.5rem;
+    font-size: 23px;
     font-style: normal;
     font-weight: 400;
     line-height: 1.75rem;
+    overflow: hidden;
+    width: 100vw;
+    width: 100svw;
+    height: 100vh;
+    height: 100svh;
 }
 
 body * {
-    transition: all 500ms ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+#container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: y proximity;
 }
 
 a {
@@ -29,12 +44,14 @@ a {
 }
 
 section {
-    min-height: 100vh;
-    min-height: 100svh;
-    width: 70rem;
+    min-height: calc(100vh - 8rem);
+    width: var(--width-l);
     position: relative;
     display: flex;
     justify-content: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    scroll-margin-top: 8rem;
 }
 
 nav {
@@ -45,7 +62,7 @@ nav {
     align-items: center;
     flex-shrink: 0;
     background-color: var(--light);
-    box-shadow: 0 0 3rem 3rem var(--light);
+    box-shadow: 0 0 2rem 2rem var(--light);
     position: sticky;
     top: 0;
     z-index: 1;
@@ -56,7 +73,7 @@ footer {
     width: 100%;
     justify-content: center;
     background-color: var(--light);
-    box-shadow: 0 0 4rem 4rem var(--light);
+    box-shadow: 0 0 2rem 2rem var(--light);
     position: sticky;
     bottom: 0;
     z-index: 1;
@@ -64,20 +81,31 @@ footer {
 
 nav ul {
     display: flex;
-    height: 100%;
     justify-content: space-between;
     align-items: center;
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 70rem;
+    width: var(--width-l);
     height: 7rem;
     flex-shrink: 0;
     color: #000;
     font-family: Outfit;
-    font-size: 1.25rem;
+    font-size: 20px;
     font-style: normal;
     font-weight: 700
+}
+
+nav #toggle-menu {
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--dark);
+    margin-left: 40px;
+    display: none;
+}
+
+nav #toggle-menu-check {
+    display: none;
 }
 
 nav ul li {
@@ -89,8 +117,8 @@ nav ul li:hover {
 }
 
 #intro {
-    height: 100vh;
-    height: 100svh;
+    min-height: 100vh;
+    min-height: 100svh;
     align-items: center;
     justify-content: space-between;
 }
@@ -100,13 +128,10 @@ nav ul li:hover {
 }
 
 #intro a {
-    display: flex;
     padding: 0 1.25rem;
-    flex-direction: column;
     border-radius: 2.6875rem;
     background: var(--primary-color);
     color: var(--light);
-    margin-top: 3.75rem;
     font-size: 20px;
 }
 
@@ -117,7 +142,6 @@ nav ul li:hover {
     flex-direction: column;
     align-items: flex-start;
     flex-shrink: 0;
-    font-size: 1.4375rem;
     font-style: normal;
     font-weight: 400;
     line-height: 2.5rem;
@@ -126,7 +150,7 @@ nav ul li:hover {
 #intro h1 {
     display: flex;
     font-family: Outfit;
-    font-size: 3.5rem;
+    font-size: 56px;
     font-style: normal;
     font-weight: 700;
     line-height: 3.75rem;
@@ -154,18 +178,13 @@ nav ul li:hover {
 #my-skills>div div {
     justify-content: space-between;
     padding-top: 3rem;
-}
-
-.six-skills {
-    width: calc(70rem - 29.688rem);
-}
-
-.three-skills {
-    width: calc(70rem - 52.188rem);
+    flex-wrap: wrap;
+    gap: 4rem;
 }
 
 #my-experiences {
-    padding-top: 10rem;
+    flex-direction: column;
+    min-height: fit-content;
 }
 
 #my-experiences>div {
@@ -205,50 +224,12 @@ nav ul li:hover {
     flex-direction: column;
 }
 
-.right-experiences {
-    right: 3px;
-    position: relative;
-}
-
-.right-experiences>div:first-of-type {
-    margin-bottom: 8rem;
-}
-
-.right-experiences>div {
-    border-left: 3px solid var(--dark);
-}
-
-.left-experiences>div {
-    border-right: 3px solid var(--dark);
-    align-items: end;
-}
-
 .experience {
     padding-top: 3rem;
 }
 
 .experience p {
     margin: 1rem 0 0 0;
-}
-
-.experience:before {
-    content: "•";
-    font-size: 4rem;
-    margin: 0px -28px;
-    position: absolute;
-}
-
-.left-experiences .experience {
-    padding-right: 16px;
-}
-
-.right-experiences .experience {
-    padding-left: 16px;
-}
-
-.left-experiences,
-.right-experiences {
-    width: 50%;
 }
 
 .experience ul {
@@ -271,7 +252,7 @@ nav ul li:hover {
     padding: 0.5rem 2rem;
     border-radius: 1.25rem;
     background: var(--light);
-    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25)
+    box-shadow: 0px 4px 7px rgba(0, 0, 0, 0.25);
 }
 
 .testimonial:hover {
@@ -326,21 +307,100 @@ nav ul li:hover {
 #contact-me {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: center;
     justify-content: center;
-    padding: 5rem 0;
     gap: 3rem;
 }
 
 #contact-me a {
-    margin-left: 20rem;
     align-items: center;
     display: flex;
     gap: 1rem;
 }
 
 #contact-me i {
-    font-size: 3rem;
+    font-size: 48px;
     width: 48px;
     text-align: center;
+}
+
+@media(prefers-reduced-motion) {
+    body * {
+        transition: none;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    body {
+        font-size: 20px;
+    }
+    section {
+        width: 90svw;
+        min-height: 100svh;
+        flex-direction: column;
+        scroll-margin-top: 1rem;
+    }
+    nav,
+    footer {
+        box-shadow: 0 0 1rem 1rem var(--light);
+    }
+    #intro {
+        justify-content: center;
+        gap: 2rem;
+    }
+    #intro h1 {
+        font-size: 32px;
+    }
+    #intro>div {
+        width: 100%;
+        height: auto;
+    }
+    #intro img {
+        width: 100%;
+        height: auto;
+    }
+    nav {
+        height: 1rem;
+    }
+    nav ul {
+        display: none;
+    }
+    #my-skills div {
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+    #my-skills>div div {
+        padding-top: 0;
+        gap: 1rem;
+    }
+    #testimonials {
+        min-height: fit-content;
+        padding-top: 4rem;
+    }
+    .testimonial {
+        width: auto
+    }
+    .testimonial .wrapper {
+        grid-template-rows: 1fr;
+    }
+    #contact-me {
+        align-items: flex-start;
+        padding-bottom: 0;
+    }
+    #contact-me a {
+        font-size: 16px;
+        gap: 0;
+    }
+    #contact-me i {
+        font-size: 20px;
+        width: 35px;
+    }
+    #contact-me div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        align-content: center;
+    }
 }

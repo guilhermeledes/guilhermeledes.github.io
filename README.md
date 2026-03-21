@@ -21,9 +21,10 @@ The design goal is to keep the system operationally simple while still supportin
 
 - recruiter-facing landing content
 - project detail pages
-- CV presentation
+- print-friendly CV presentation
 - SEO metadata
 - grounded AI answers over curated portfolio content
+- privacy-first analytics and chat reliability visibility
 - containerized deployment on a VPS
 
 The visual design direction for the portfolio was created with [Lovable](https://lovable.dev/), then implemented in the application codebase.
@@ -38,6 +39,7 @@ flowchart LR
     P --> A["Next.js App Router Monolith"]
     A --> C["Curated Content Collections"]
     A --> O["OpenRouter API"]
+    A --> M["Umami Analytics"]
     A --> H["Healthcheck Endpoint"]
 ```
 
@@ -51,7 +53,10 @@ The application is built as a `Next.js` App Router monolith. It is responsible f
 - loading and validating authored content
 - generating SEO metadata
 - exposing the chat API
+- exposing the print-friendly CV route
+- persisting the user-selected light/dark theme
 - brokering chat requests to the configured AI preset
+- emitting privacy-first analytics events
 
 ### 2. Content layer
 
@@ -81,6 +86,17 @@ The application sends chat requests to `OpenRouter` using a portfolio-specific p
 - coarse request handling concerns
 - healthcheck-aware readiness in the deployment setup
 
+### 5. Analytics and observability
+
+The public site uses `Umami Cloud` for lightweight, privacy-first analytics. It is used for:
+
+- pageviews and sessions
+- top pages and referrers
+- key click and conversion-like events
+- chat reliability telemetry around the `OpenRouter` integration
+
+By design, the analytics layer avoids collecting PII and does not send raw chat prompts or answers.
+
 ## Primary Flows
 
 ### Public page rendering
@@ -107,10 +123,13 @@ sequenceDiagram
     participant B as Browser
     participant A as Chat API
     participant O as OpenRouter
+    participant M as Umami
 
     B->>A: Send prompt + short history
+    A->>M: Emit request-started event
     A->>O: Send request through configured preset model
     O-->>A: Response
+    A->>M: Emit success/failure telemetry
     A-->>B: Assistant answer
 ```
 
@@ -131,6 +150,10 @@ AI integration:
 
 - `OpenRouter`
 
+Observability:
+
+- `Umami Cloud`
+
 Quality and validation:
 
 - `Biome`
@@ -142,17 +165,25 @@ Deployment:
 - `Docker`
 - `Docker Compose`
 - `Caddy`
+- `GitHub Actions`
+- `GHCR`
+- `Coolify`
 - VPS hosting
 
 ## Deployment Topology
 
 ```mermaid
 flowchart TD
-    I["Internet"] --> C["Caddy Reverse Proxy"]
+    I["Internet"] --> D["Domain / Reverse Proxy"]
+    D --> C["Caddy Reverse Proxy"]
     C --> N["Next.js Container"]
     N --> K["OpenRouter API"]
+    N --> U["Umami Cloud"]
     N --> F["Local Content Files"]
     C --> Z["/healthz checks"]
+    G["GitHub Actions"] --> R["GHCR Image"]
+    R --> Y["Coolify on VPS"]
+    Y --> N
 ```
 
 The deployment model favors low operational overhead:
@@ -161,6 +192,8 @@ The deployment model favors low operational overhead:
 - one proxy container
 - no data plane services
 - environment-variable-based runtime configuration
+- image build/publish in GitHub Actions
+- image rollout through Coolify from `GHCR`
 
 ## Operational Notes
 
